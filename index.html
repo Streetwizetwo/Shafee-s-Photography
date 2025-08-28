@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shafee Vadia Photography - Timeless Elegance in 8K</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-gold: #b8972e;
+            --black: #0a0a0a;
+            --off-white: #f5f5f5;
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: var(--black);
+            color: var(--off-white);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3840&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .section-bg {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .portfolio-img {
+            transition: all 0.5s ease;
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .portfolio-img img {
+            transition: transform 0.8s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .portfolio-img:hover img {
+            transform: scale(1.08);
+        }
+        
+        .portfolio-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .portfolio-img:hover::after {
+            opacity: 1;
+        }
+        
+        .portfolio-img .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-img:hover .caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--black);
+            padding: 1rem 2.5rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 2px solid var(--gold);
+        }
+        
+        .btn-gold:hover {
+            background-color: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-card {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 32px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .icon-wrapper {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .gold-divider {
+            height: 2px;
+            width: 60px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px auto;
+        }
+        
+        .testimonial-card {
+            background: rgba(0, 0, 0, 0.7);
+            border-left: 3px solid var(--gold);
+            padding: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .pricing-card {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            border: 1px solid var(--gold);
+            transform: translateY(-5px);
+        }
+        
+        .pricing-card.featured {
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 0.9));
+            border: 1px solid var(--gold);
+            position: relative;
+            transform: scale(1.03);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--gold);
+            color: var(--black);
+            padding: 5px 30px;
+            font-size: 12px;
+            font-weight: bold;
+            transform: rotate(45deg);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll;
+            }
+            
+            .section-bg {
+                background-attachment: scroll;
+            }
+            
+            .pricing-card.featured::before {
+                right: -25px;
+                padding: 5px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="fade-in">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-wider">SHAFEE VADIA</h1>
+            <div class="gold-divider my-6"></div>
+            <p class="text-xl md:text-2xl lg:text-3xl mt-4 font-light">Master of Light • Curator of Moments • Artist of Life</p>
+            <a href="#contact" class="btn-gold mt-10 inline-block text-lg font-semibold rounded">Begin Your Journey</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-24 px-4 md:px-12 lg:px-24 section-bg" style="background-image: url('https://images.unsplash.com/photo-1519227355456-8b25ab4c4512?ixlib=rb-4.0.3&auto=format&fit=crop&w=3840&q=80');">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-16">Luxury Photography Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="service-card p-8 rounded-lg fade-in">
+                    <div class="icon-wrapper">💍</div>
+                    <h3 class="text-2xl font-semibold mt-6 text-center">Luxury Weddings</h3>
+                    <div class="gold-divider"></div>
+                    <p class="mt-4 text-center">Transform your special day into an eternal masterpiece. From intimate ceremonies to grand celebrations in KwaZulu-Natal and beyond.</p>
+                    <p class="mt-6 text-center font-bold text-xl">From R85,000</p>
+                </div>
+                
+                <div class="service-card p-8 rounded-lg fade-in">
+                    <div class="icon-wrapper">👑</div>
+                    <h3 class="text-2xl font-semibold mt-6 text-center">Executive Portraits</h3>
+                    <div class="gold-divider"></div>
+                    <p class="mt-4 text-center">Prestigious portrait sessions for CEOs, entrepreneurs, and distinguished professionals. Award-winning imagery that commands respect.</p>
+                    <p class="mt-6 text-center font-bold text-xl">From R18,500</p>
+                </div>
+                
+                <div class="service-card p-8 rounded-lg fade-in">
+                    <div class="icon-wrapper">🏆</div>
+                    <h3 class="text-2xl font-semibold mt-6 text-center">Corporate Events</h3>
+                    <div class="gold-divider"></div>
+                    <p class="mt-4 text-center">Premium documentation of your most important business moments. Galas, conferences, product launches across South Africa.</p>
+                    <p class="mt-6 text-center font-bold text-xl">From R42,000</p>
+                </div>
+                
+                <div class="service-card p-8 rounded-lg fade-in">
+                    <div class="icon-wrapper">✨</div>
+                    <h3 class="text-2xl font-semibold mt-6 text-center">Fashion & Beauty</h3>
+                    <div class="gold-divider"></div>
+                    <p class="mt-4 text-center">High-fashion editorials and luxury brand campaigns. Collaborating with top models, stylists, and creative directors.</p>
+                    <p class="mt-6 text-center font-bold text-xl">From R52,500</p>
+                </div>
+                
+                <div class="service-card p-8 rounded-lg fade-in">
+                    <div class="icon-wrapper">🌟</div>
+                    <h3 class="text-2xl font-semibold mt-6 text-center">Celebrity & VIP</h3>
+                    <div class="gold-divider"></div>
+                    <p class="mt-4 text-center">Exclusive sessions for high-profile clients. Red carpet events, private parties, and intimate celebrity portraits with discretion.</p>
+                    <p class="mt-6 text-center font-bold text-xl">Price on Request</p>
+                </div>
+                
+                <div class="service-card p-8 rounded-lg fade-in">
+                    <div class="icon-wrapper">🎭</div>
+                    <h3 class="text-2xl font-semibold mt-6 text-center">Fine Art Collections</h3>
+                    <div class="gold-divider"></div>
+                    <p class="mt-4 text-center">Limited edition fine art photography. Museum-quality prints for collectors and galleries. Investment-grade artistic photography.</p>
+                    <p class="mt-6 text-center font-bold text-xl">From R125,000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="py-24 px-4 md:px-12 lg:px-24 section-bg" style="background-image: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=3840&q=80');">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-16">Award-Winning Portfolio</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="portfolio-img h-96">
+                    <img src="https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="Royal Wedding">
+                    <div class="caption">
+                        <p class="text-center text-xl">Royal Wedding • Durban • 2024</p>
+                    </div>
+                </div>
+                <div class="portfolio-img h-96">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="CEO Portrait Series">
+                    <div class="caption">
+                        <p class="text-center text-xl">CEO Portrait Series • Johannesburg • 2024</p>
+                    </div>
+                </div>
+                <div class="portfolio-img h-96">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="Fashion Week SA">
+                    <div class="caption">
+                        <p class="text-center text-xl">Fashion Week SA • Cape Town • 2024</p>
+                    </div>
+                </div>
+                <div class="portfolio-img h-96">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="Luxury Resort Opening">
+                    <div class="caption">
+                        <p class="text-center text-xl">Luxury Resort Opening • Drakensberg • 2024</p>
+                    </div>
+                </div>
+                <div class="portfolio-img h-96">
+                    <img src="https://beat.com.au/wp-content/uploads/2019/11/THE-LUME-Starry-night_still-image-e1573008400849.jpg" alt="Art Gallery Exhibition">
+                    <div class="caption">
+                        <p class="text-center text-xl">Art Gallery Exhibition • Stanger • 2024</p>
+                    </div>
+                </div>
+                <div class="portfolio-img h-96">
+                    <img src="https://images.unsplash.com/photo-1508780709619-79562169bc64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="Heritage Collection">
+                    <div class="caption">
+                        <p class="text-center text-xl">Heritage Collection • KwaZulu-Natal • 2024</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16 fade-in">
+                <a href="#contact" class="btn-gold inline-block text-lg font-semibold rounded">View Full Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-24 px-4 md:px-12 lg:px-24 section-bg" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3840&q=80');">
+        <div class="max-w-5xl mx-auto text-center fade-in">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-12">The Artist Behind the Lens</h2>
+            <p class="text-xl md:text-2xl leading-relaxed">Based in the heart of Stanger, KwaZulu-Natal, Shafee Vadia is an internationally acclaimed photographer whose work captures the soul of South Africa and beyond. With over 15 years of experience, Shafee has become the photographer of choice for celebrities, business leaders, and discerning clients.</p>
+            <p class="mt-8 text-xl md:text-2xl leading-relaxed">His unique perspective blends African heritage with contemporary artistry, creating images that tell stories and preserve legacies. From the rolling hills of KZN to the bustling cities of Johannesburg and Cape Town, Shafee's work showcases the beauty and diversity of our rainbow nation.</p>
+            <p class="mt-8 text-xl md:text-2xl leading-relaxed">Each photograph is a masterpiece, each moment becomes eternal. This is not just photography - this is art that will be treasured for generations, capturing the essence of South African elegance and sophistication.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-gold-500">15+</div>
+                    <div class="text-xl mt-2">Years Experience</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-gold-500">500+</div>
+                    <div class="text-xl mt-2">Clients Worldwide</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-gold-500">28</div>
+                    <div class="text-xl mt-2">Awards Won</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 px-4 md:px-12 lg:px-24 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-16">Client Testimonials</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card fade-in">
+                    <div class="text-4xl mb-4">"</div>
+                    <p class="italic text-lg">Shafee captured our wedding with such artistry and emotion. Every time we look at our photos, we're transported back to that perfect day.</p>
+                    <div class="mt-6 font-semibold">— Mr. & Mrs. Singh, Durban</div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="text-4xl mb-4">"</div>
+                    <p class="italic text-lg">The executive portraits Shafee created for our leadership team have transformed our corporate branding. The quality is exceptional.</p>
+                    <div class="mt-6 font-semibold">— CEO, Johannesburg Tech Firm</div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="text-4xl mb-4">"</div>
+                    <p class="italic text-lg">Working with Shafee on our fashion campaign was a revelation. His attention to detail and creative vision elevated our entire collection.</p>
+                    <div class="mt-6 font-semibold">— Creative Director, Cape Town</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-4 md:px-12 lg:px-24 section-bg" style="background-image: url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3840&q=80');">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-16">Create Your Legacy</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6 pb-2 border-b border-gold-700">Get In Touch</h3>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">📧</span> <a href="mailto:hello@shafeevadia.com" class="underline hover:text-gold-400 transition">hello@shafeevadia.com</a></p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">📱</span> <a href="tel:0815544588" class="underline hover:text-gold-400 transition">081 554 4588</a></p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">📍</span> Stanger, KwaZulu-Natal</p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">🌍</span> Serving all of South Africa</p>
+                </div>
+                
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6 pb-2 border-b border-gold-700">Service Areas</h3>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">🏛️</span> Stanger & KwaZulu-Natal</p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">🏙️</span> Johannesburg & Gauteng</p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">🏔️</span> Cape Town & Western Cape</p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">🌊</span> Durban & Coastal Regions</p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">✈️</span> International Destinations</p>
+                </div>
+                
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6 pb-2 border-b border-gold-700">Recognition & Awards</h3>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">🏆</span> South African Photography Awards - Winner 2024</p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">🏆</span> African Wedding Photographer of the Year 2023</p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">🏆</span> International Portrait Photography - Gold 2023</p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">🏆</span> KZN Creative Arts Excellence Award 2022</p>
+                    <p class="mt-4 flex items-center"><span class="text-2xl mr-3">🏆</span> Featured in Conde Nast & Vogue SA</p>
+                </div>
+            </div>
+            
+            <div class="mt-20 text-center fade-in">
+                <h3 class="text-3xl font-semibold mb-10">Investment Packages</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="pricing-card p-6">
+                        <h4 class="text-xl font-semibold text-center">Essential</h4>
+                        <div class="text-3xl font-bold text-gold-500 text-center my-4">R18,500</div>
+                        <ul class="space-y-3">
+                            <li>2 Hour Session</li>
+                            <li>20 Edited Images</li>
+                            <li>Online Gallery</li>
+                            <li>1 Location</li>
+                        </ul>
+                        <a href="mailto:hello@shafeevadia.com" class="btn-gold mt-6 w-full text-center block">Inquire</a>
+                    </div>
+                    
+                    <div class="pricing-card p-6">
+                        <h4 class="text-xl font-semibold text-center">Professional</h4>
+                        <div class="text-3xl font-bold text-gold-500 text-center my-4">R42,000</div>
+                        <ul class="space-y-3">
+                            <li>4 Hour Coverage</li>
+                            <li>50 Edited Images</li>
+                            <li>Online Gallery</li>
+                            <li>2 Locations</li>
+                            <li>Print Release</li>
+                        </ul>
+                        <a href="mailto:hello@shafeevadia.com" class="btn-gold mt-6 w-full text-center block">Inquire</a>
+                    </div>
+                    
+                    <div class="pricing-card p-6 featured">
+                        <h4 class="text-xl font-semibold text-center">Premium</h4>
+                        <div class="text-3xl font-bold text-gold-500 text-center my-4">R85,000</div>
+                        <ul class="space-y-3">
+                            <li>8 Hour Coverage</li>
+                            <li>100+ Edited Images</li>
+                            <li>Luxury Album</li>
+                            <li>Multiple Locations</li>
+                            <li>Assistant Photographer</li>
+                            <li>Print Release</li>
+                        </ul>
+                        <a href="mailto:hello@shafeevadia.com" class="btn-gold mt-6 w-full text-center block">Inquire</a>
+                    </div>
+                    
+                    <div class="pricing-card p-6">
+                        <h4 class="text-xl font-semibold text-center">Elite</h4>
+                        <div class="text-3xl font-bold text-gold-500 text-center my-4">R125,000+</div>
+                        <ul class="space-y-3">
+                            <li>Full Day Coverage</li>
+                            <li>200+ Edited Images</li>
+                            <li>Premium Album</li>
+                            <li>Multiple Photographers</li>
+                            <li>Drone Coverage</li>
+                            <li>Fine Art Prints</li>
+                        </ul>
+                        <a href="mailto:hello@shafeevadia.com" class="btn-gold mt-6 w-full text-center block">Inquire</a>
+                    </div>
+                </div>
+                
+                <a href="mailto:hello@shafeevadia.com" class="btn-gold mt-12 inline-block text-lg font-semibold rounded">Request Private Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="py-24 px-4 md:px-12 lg:px-24 text-center section-bg" style="background-image: url('https://images.unsplash.com/photo-1518623489648-76b3f024e6c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3840&q=80');">
+        <div class="max-w-5xl mx-auto fade-in">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-10">"Where Every Moment Becomes Art"</h2>
+            <p class="text-xl md:text-2xl">Thank you for exploring the world of Shafee Vadia Photography. Your story awaits to be captured in timeless elegance.</p>
+            <p class="mt-10 text-xl md:text-2xl italic">"Photography is the art of frozen time... the ability to store emotion and feelings within a frame." - Shafee Vadia</p>
+            
+            <div class="mt-16 flex justify-center space-x-6">
+                <a href="#" class="text-2xl hover:text-gold-400 transition">Instagram</a>
+                <a href="#" class="text-2xl hover:text-gold-400 transition">Facebook</a>
+                <a href="#" class="text-2xl hover:text-gold-400 transition">Pinterest</a>
+                <a href="#" class="text-2xl hover:text-gold-400 transition">Vogue</a>
+            </div>
+            
+            <a href="#contact" class="btn-gold mt-12 inline-block text-lg font-semibold rounded">Start Your Journey</a>
+            
+            <p class="mt-16 text-sm text-gray-400">© 2024 Shafee Vadia Photography. All rights reserved.</p>
+        </div>
+    </section>
+
+    <script>
+        // Fade-in animation on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => observer.observe(element));
+        });
+    </script>
+</body>
+</html>
